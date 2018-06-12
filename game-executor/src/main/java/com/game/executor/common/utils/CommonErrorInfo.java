@@ -1,5 +1,10 @@
 package com.game.executor.common.utils;
-
+/**
+ * 
+ * @author JiangBangMing
+ *
+ * 2018年6月11日 下午1:18:47
+ */
 public class CommonErrorInfo {
 
 
