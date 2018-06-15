@@ -26,6 +26,8 @@ public class Loggers {
 	public static final Logger handerLogger=LoggerFactory.getLogger("handler");
 	/**admin相关的日志*/
 	public static final Logger adminLogger=LoggerFactory.getLogger("admin");
+    /**rpc相关的日志 */
+    public static final Logger rpcLogger = LoggerFactory.getLogger("rpc");
 	
 	
 }

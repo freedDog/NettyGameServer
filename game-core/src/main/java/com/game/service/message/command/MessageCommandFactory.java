@@ -1,10 +1,14 @@
 package com.game.service.message.command;
+
+import org.springframework.stereotype.Service;
+
 /**
  * 消息工厂
  * @author JiangBangMing
  *
  * 2018年6月4日 下午1:32:38
  */
+@Service
 public class MessageCommandFactory {
 
 	public MessageCommand[] getAllCommands() {

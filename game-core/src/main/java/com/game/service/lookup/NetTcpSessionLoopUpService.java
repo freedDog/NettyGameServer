@@ -3,9 +3,14 @@ package com.game.service.lookup;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
+import com.game.bootstrap.manager.LocalMananger;
+import com.game.common.config.GameServerConfig;
 import com.game.common.constant.Loggers;
+import com.game.common.constant.ServiceName;
 import com.game.service.IService;
+import com.game.service.config.GameServerConfigService;
 import com.game.service.limit.AtomicLimitNumber;
 import com.game.service.net.tcp.session.NettySession;
 import com.game.service.net.tcp.session.NettyTcpSession;
@@ -15,6 +20,7 @@ import com.game.service.net.tcp.session.NettyTcpSession;
  *
  * 2018年6月4日 上午11:33:39
  */
+@Service
 public class NetTcpSessionLoopUpService implements IChannleLookUpService,IService{
 	
 	protected static final Logger logger=Loggers.serverStatusStatistics;
@@ -25,20 +31,17 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService,IServic
 	
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return ServiceName.NetTcpSessionLoopUpService;
 	}
 
 	@Override
 	public void startup() throws Exception {
-		// TODO Auto-generated method stub
-		
+		atomicLimitNumber=new AtomicLimitNumber();
 	}
 
 	@Override
 	public void shutdown() throws Exception {
-		// TODO Auto-generated method stub
-		
+		sessions.clear();
 	}
 
 	@Override
@@ -49,15 +52,39 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService,IServic
 	@Override
 	public boolean addNettySession(NettyTcpSession nettyTcpSession) {
 		if(logger.isDebugEnabled()) {
-			logger.debug("add nettySession "+nettyTcpSession.getChannel().id().asLongText()+" sessionId "+nettyTcpSession.ge);
+			logger.debug("add nettySession "+nettyTcpSession.getChannel().id().asLongText()+" sessionId "+nettyTcpSession.getSessionId());
 		}
-		return false;
+		long current=atomicLimitNumber.increment();
+		if(!checkMaxNumber(current)) {
+			atomicLimitNumber.decrement();
+			return false;
+		}
+		sessions.put(nettyTcpSession.getSessionId(), nettyTcpSession);
+		return true;
 	}
 
 	@Override
 	public boolean removenettySession(NettyTcpSession nettyTcpSession) {
-		// TODO Auto-generated method stub
-		return false;
+		if(logger.isDebugEnabled()) {
+			logger.debug("remove nettySession "+nettyTcpSession.getChannel().id().asLongText()+" sessionId "+nettyTcpSession.getSessionId());
+		}
+		atomicLimitNumber.decrement();
+		return sessions.remove(nettyTcpSession.getSessionId())!=null;
 	}
 
+	public boolean checkMaxNumber(long current) {
+		GameServerConfigService gameServerConfigService=LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+		GameServerConfig gameServerConfig=gameServerConfigService.getGameServerConfig();
+		int maxNumber=gameServerConfig.getMaxTcpSessionNumber();
+		return current<=maxNumber;
+	}
+
+	public ConcurrentHashMap<Long, NettySession> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(ConcurrentHashMap<Long, NettySession> sessions) {
+		this.sessions = sessions;
+	}
+	
 }

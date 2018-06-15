@@ -36,7 +36,7 @@ public class DisruptorExecutorService implements IUpdateExecutor{
 	
 	private String poolName;
 	
-	public DisruptorExecutorService(String name,int excutorSize) {
+	public DisruptorExecutorService(String poolName,int excutorSize) {
 		this.excutorSzie=excutorSize;
 		this.poolName=poolName;
 	}

@@ -3,6 +3,7 @@ package com.game.service.net.tcp.session;
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.IUpdatable;
 import com.game.common.exception.NetMessageException;
+import com.game.service.message.AbstractNetMessage;
 import com.game.service.message.process.NetProtoBufMessageProcess;
 import com.game.service.uuid.LongIdGenerator;
 
@@ -62,6 +63,18 @@ public class NettyTcpSession extends NettySession implements IUpdatable{
 		tcpNetStateUpdate.update();
 		return false;
 	}
+	/**
+	 * 添加消息
+	 * @param abstractNetMessage
+	 */
+	public void addNetMessage(AbstractNetMessage abstractNetMessage) {
+		this.netProtoBufMessageProcess.addnetMessage(abstractNetMessage);
+	}
+	
+	public long getSessionId() {
+		return sessionId;
+	}
+	
 	public NettyTcpNetMessageSender getNettyTcpNetMessageSender() {
 		return nettyTcpNetMessageSender;
 	}

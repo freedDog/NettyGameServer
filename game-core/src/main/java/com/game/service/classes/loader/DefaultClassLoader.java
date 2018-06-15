@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.util.jar.JarFile;
 
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.game.common.constant.Loggers;
 import com.game.service.IService;
@@ -16,6 +17,7 @@ import com.game.service.IService;
  *
  * 2018年6月1日 下午2:03:37
  */
+@Service
 public class DefaultClassLoader implements IService{
 
 	public static final Logger logger=Loggers.serverLogger;

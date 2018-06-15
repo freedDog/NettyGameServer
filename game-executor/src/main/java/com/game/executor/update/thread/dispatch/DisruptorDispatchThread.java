@@ -72,10 +72,6 @@ public class DisruptorDispatchThread extends DispatchThread{
 			Loggers.gameExecutorError.error(e.toString(),e);
 		}
 	}
-	public DisruptorDispatchThread(EventBus eventBus) {
-		super(eventBus);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public void unpark() {

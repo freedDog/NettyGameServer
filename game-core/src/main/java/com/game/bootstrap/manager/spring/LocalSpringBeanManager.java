@@ -7,17 +7,23 @@ package com.game.bootstrap.manager.spring;
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+import com.game.logic.net.NetMessageProcessLogic;
+import com.game.logic.net.NetMessageTcpDispatchLogic;
 import com.game.service.message.command.MessageCommandFactory;
 import com.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.game.service.message.decoder.NetProtoBufUdpMessageDecoderFactory;
+import com.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import com.game.service.message.encoder.NetProtoBufUdpMessageEncoderFactory;
 import com.game.service.message.factory.TcpMessageFactory;
+import com.game.service.net.tcp.pipeline.DefaultTcpServerPipeLine;
+import com.game.service.net.tcp.pipeline.DefaultUdpServerPipeLine;
 import com.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
 import com.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import com.game.service.uuid.LongIdGenerator;
 
+@Repository
 public class LocalSpringBeanManager {
 	@Autowired
 	private NettyTcpSessionBuilder nettyTcpSessionBuilder;
@@ -37,6 +43,17 @@ public class LocalSpringBeanManager {
     private TcpMessageFactory tcpMessageFactory;
     @Autowired
     private LongIdGenerator longIdGenerator;
+    @Autowired
+    private NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory;
+    @Autowired
+    private NetMessageProcessLogic netMessageProcessLogic;
+    @Autowired
+    private NetMessageTcpDispatchLogic netMessageTcpDispatchLogic;
+    @Autowired
+    private DefaultUdpServerPipeLine defaultUdpServerPipeLine;
+    @Autowired
+    private DefaultTcpServerPipeLine defaultTcpServerPipeLine;
+    
 	public NettyTcpSessionBuilder getNettyTcpSessionBuilder() {
 		return nettyTcpSessionBuilder;
 	}
@@ -111,6 +128,47 @@ public class LocalSpringBeanManager {
 
 	public void setLongIdGenerator(LongIdGenerator longIdGenerator) {
 		this.longIdGenerator = longIdGenerator;
+	}
+
+	public NetProtoBufHttpMessageEncoderFactory getNetProtoBufHttpMessageEncoderFactory() {
+		return netProtoBufHttpMessageEncoderFactory;
+	}
+
+	public void setNetProtoBufHttpMessageEncoderFactory(
+			NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory) {
+		this.netProtoBufHttpMessageEncoderFactory = netProtoBufHttpMessageEncoderFactory;
+	}
+
+	public NetMessageProcessLogic getNetMessageProcessLogic() {
+		return netMessageProcessLogic;
+	}
+
+	public void setNetMessageProcessLogic(NetMessageProcessLogic netMessageProcessLogic) {
+		this.netMessageProcessLogic = netMessageProcessLogic;
+	}
+
+	public DefaultUdpServerPipeLine getDefaultUdpServerPipeLine() {
+		return defaultUdpServerPipeLine;
+	}
+
+	public void setDefaultUdpServerPipeLine(DefaultUdpServerPipeLine defaultUdpServerPipeLine) {
+		this.defaultUdpServerPipeLine = defaultUdpServerPipeLine;
+	}
+
+	public DefaultTcpServerPipeLine getDefaultTcpServerPipeLine() {
+		return defaultTcpServerPipeLine;
+	}
+
+	public void setDefaultTcpServerPipeLine(DefaultTcpServerPipeLine defaultTcpServerPipeLine) {
+		this.defaultTcpServerPipeLine = defaultTcpServerPipeLine;
+	}
+
+	public NetMessageTcpDispatchLogic getNetMessageTcpDispatchLogic() {
+		return netMessageTcpDispatchLogic;
+	}
+
+	public void setNetMessageTcpDispatchLogic(NetMessageTcpDispatchLogic netMessageTcpDispatchLogic) {
+		this.netMessageTcpDispatchLogic = netMessageTcpDispatchLogic;
 	}
 	
 	

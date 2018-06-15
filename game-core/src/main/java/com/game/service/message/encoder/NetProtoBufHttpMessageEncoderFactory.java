@@ -1,5 +1,7 @@
 package com.game.service.message.encoder;
 
+import org.springframework.stereotype.Service;
+
 import com.game.service.message.AbstractNetProtoBufMessage;
 import com.game.service.message.NetHttpMessageHead;
 import com.game.service.message.NetMessageBody;
@@ -12,6 +14,7 @@ import io.netty.buffer.Unpooled;
  *
  * 2018年6月5日 下午3:33:55
  */
+@Service
 public class NetProtoBufHttpMessageEncoderFactory implements INetProtoBufHttpMessageEncoderFactory{
 
 	@Override

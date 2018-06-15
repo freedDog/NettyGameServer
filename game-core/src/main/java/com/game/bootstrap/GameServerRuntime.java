@@ -30,7 +30,7 @@ public class GameServerRuntime {
 	/**
 	 * 打开服务
 	 */
-	public static void setOpen() {
+	public static void setOpenOn() {
 		open=true;
 	}
 	/**

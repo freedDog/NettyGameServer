@@ -93,7 +93,7 @@ public class UpdateService<ID extends Serializable> {
 		this.updateMap.clear();
 		UpdateEventCacheService.init();
 		UpdateEventCacheService.start();
-		this.dispatchThread.start();
+		this.dispatchThread.startup();
 		this.iUpdateExecutor.startup();
 		this.dispatchThread.setName(Constants.Thread.DISPATCH);
 		this.dispatchThread.start();

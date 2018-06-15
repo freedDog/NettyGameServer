@@ -20,6 +20,26 @@ public class GlobalConstants {
 		public static final int life_cycle_interval=6000;
 	}
     /**
+     * 网络
+     */
+    public static class Net{
+
+        /** 心跳间隔*/
+        public static final int HEART_BASE_SIZE= 1;
+        /** 心跳写时间超时(单位秒)*/
+        public static final int SESSION_HEART_WRITE_TIMEOUT= HEART_BASE_SIZE * 60;
+        /** 心跳写时间超时(单位秒)*/
+        public static final int SESSION_HEART_READ_TIMEOUT= HEART_BASE_SIZE * 60;
+        /** 心跳读写时间超时(单位秒)*/
+        public static final int SESSION_HEART_ALL_TIMEOUT= HEART_BASE_SIZE * 60;
+    }
+    /**
+     *队列线程执行大小
+     */
+    public static class QueueMessageExecutor{
+        public static final boolean processLeft = true;
+    }
+    /**
      *上传协议
      */
     public static class FileExtendConstants {
@@ -78,6 +98,13 @@ public class GlobalConstants {
         /**websocket-server*/
         public static final String WEBSOCKET_SERVER_CONFIG="websocket-server.xml";
     }
+    public static class ZooKeeperConstants{
+        public static final String registryAdress = "registry.address";
+        public static final String ZK_REGISTRY_PATH = "/rpc_registry";
+        public static final String ZK_DATA_PATH = "/data";
+        public static final int ZK_SESSION_TIMEOUT = 5000;
+    }
+
     /**
      * JSONFile
      */

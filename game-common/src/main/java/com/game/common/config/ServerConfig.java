@@ -111,6 +111,10 @@ public abstract class ServerConfig implements Config{
 	public String getVersion() {
 		return this.version;
 	}
+	
+	public void setVersion(String version) {
+		this.version = version;
+	}
 	@Override
 	public boolean getIsDebug() {
 		return getDebug()==1;

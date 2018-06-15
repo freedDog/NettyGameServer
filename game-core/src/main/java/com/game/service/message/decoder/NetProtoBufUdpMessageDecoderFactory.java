@@ -1,5 +1,7 @@
 package com.game.service.message.decoder;
 
+import org.springframework.stereotype.Service;
+
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.constant.Loggers;
 import com.game.common.exception.CodecException;
@@ -17,6 +19,7 @@ import io.netty.buffer.Unpooled;
  *
  * 2018年6月5日 下午1:43:57
  */
+@Service
 public class NetProtoBufUdpMessageDecoderFactory implements INetProtoBufUdpMessageDecoderFactory{
 
 	@Override

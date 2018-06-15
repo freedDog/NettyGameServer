@@ -1,15 +1,19 @@
 package com.game.service.message.registry;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.bootstrap.manager.spring.LocalSpringBeanManager;
 import com.game.common.annotation.MessageCommandAnnotation;
+import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.Loggers;
 import com.game.common.scanner.ClassScanner;
+import com.game.common.util.StringUtils;
 import com.game.service.IService;
 import com.game.service.Reloadable;
 import com.game.service.config.GameServerConfigService;
@@ -23,6 +27,7 @@ import com.game.service.message.command.MessageCommandFactory;
  *
  * 2018年6月4日 下午1:18:41
  */
+@Service
 public class MessageRegistry implements Reloadable,IService{
 
 	public static Logger logger=Loggers.serverLogger;
@@ -95,7 +100,12 @@ public class MessageRegistry implements Reloadable,IService{
 	}
 	public void reload() throws Exception{
 		loadMessageCommand();
-		GameServerConfigService gameServerConfigService=LocalMananger.getInstance().getLocalSpringServiceManager().get
+		GameServerConfigService gameServerConfigService=LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+		String netMsgNameSpace=gameServerConfigService.getGameServerConfig().getNetMsgNameSpace();
+		List<String> splits=StringUtils.getListBySplit(netMsgNameSpace, ",");
+		for(String key:splits) {
+			loadPackage(key, GlobalConstants.FileExtendConstants.Ext);
+		}
 	}
 	public MessageCommand getMessageCommand(short commandId) {
 		return this.messageCommandMap.get(commandId);

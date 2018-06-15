@@ -10,6 +10,11 @@ public class RpcResponse {
 	private String requestId;
 	private String error;
 	private Object reesult;
+	
+	public boolean isError() {
+		return error!=null;
+	}
+	
 	public String getRequestId() {
 		return requestId;
 	}

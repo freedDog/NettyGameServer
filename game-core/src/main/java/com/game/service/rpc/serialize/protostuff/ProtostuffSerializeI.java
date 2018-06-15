@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
+import org.springframework.stereotype.Service;
+
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
@@ -11,11 +13,12 @@ import com.dyuproject.protostuff.runtime.RuntimeSchema;
 import com.game.service.rpc.serialize.IRpcSerialize;
 
 /**
- * 
+ * 功能模块
  * @author JiangBangMing
  *
  * 2018年6月5日 下午2:14:04
  */
+@Service
 public class ProtostuffSerializeI implements IRpcSerialize {
 	
 	private Map<Class<?>, Schema<?>> cachedSchema=new ConcurrentHashMap<>();
