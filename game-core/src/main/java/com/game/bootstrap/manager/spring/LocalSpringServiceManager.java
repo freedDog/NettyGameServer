@@ -32,14 +32,14 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 	private Logger logger=Loggers.serverLogger;
 	@Autowired
 	private DefaultClassLoader defaultClassLoader;
-	@Autowired
-	private MessageRegistry messageRegistry;
+    @Autowired
+    private NetTcpSessionLoopUpService netTcpSessionLoopUpService;
 	@Autowired
 	private GamePlayerLoopUpService gamePlayerLoopUpService;
     @Autowired
     private GameServerConfigService gameServerConfigService;
-    @Autowired
-    private NetTcpSessionLoopUpService netTcpSessionLoopUpService;
+	@Autowired
+	private MessageRegistry messageRegistry;
     @Autowired
     private RpcMethodRegistry rpcMethodRegistry;
     @Autowired

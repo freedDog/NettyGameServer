@@ -34,6 +34,24 @@ public class LocalMananger extends AbstractLocalManager {
 		return instance;
 	}
 	
+	
+	
+	@Override
+	public <T> void add(Object service, Class<T> inter) {
+		super.add(service, inter);
+		if(service instanceof GameTcpMessageProcessor) {
+			this.gameTcpMessageProcessor=(GameTcpMessageProcessor)service;
+		}else if(service instanceof GameUdpMessageOrderProcessor) {
+			this.gameUdpMessageOrderProcessor=(GameUdpMessageOrderProcessor)service;
+		}else if(service instanceof GameUdpMessageProcessor) {
+			this.gameUdpMessageProcessor=(GameUdpMessageProcessor)service;
+		}else if(service instanceof UpdateService) {
+			this.updateService=(UpdateService)service;
+		}
+	}
+
+
+
 	private LocalSpringServiceManager localSpringServiceManager;
 	
 	private LocalSpringBeanManager localSpringBeanManager;

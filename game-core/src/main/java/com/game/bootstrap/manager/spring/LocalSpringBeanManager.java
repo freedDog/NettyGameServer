@@ -54,6 +54,7 @@ public class LocalSpringBeanManager {
     @Autowired
     private DefaultTcpServerPipeLine defaultTcpServerPipeLine;
     
+    
 	public NettyTcpSessionBuilder getNettyTcpSessionBuilder() {
 		return nettyTcpSessionBuilder;
 	}

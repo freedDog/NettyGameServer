@@ -12,6 +12,7 @@ import com.game.bootstrap.manager.spring.LocalSpringBeanManager;
 import com.game.common.annotation.MessageCommandAnnotation;
 import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.Loggers;
+import com.game.common.constant.ServiceName;
 import com.game.common.scanner.ClassScanner;
 import com.game.common.util.StringUtils;
 import com.game.service.IService;
@@ -73,7 +74,7 @@ public class MessageRegistry implements Reloadable,IService{
 		//加载class,获取协议命令
 		if(fileNames!=null) {
 			for(String fileName:fileNames) {
-				String realClass=namespace+"."+fileName.substring(0,fileName.length());
+				String realClass=namespace+"."+fileName.substring(0,fileName.length()-(ext.length()));
 				Class<?> messageClass=Class.forName(realClass);
 				
 				logger.info("message load:"+messageClass);
@@ -113,14 +114,12 @@ public class MessageRegistry implements Reloadable,IService{
 	
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return ServiceName.MessageRegistry;
 	}
 
 	@Override
 	public void startup() throws Exception {
-		// TODO Auto-generated method stub
-		
+		reload();
 	}
 
 	@Override

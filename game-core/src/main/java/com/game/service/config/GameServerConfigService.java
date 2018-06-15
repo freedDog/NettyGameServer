@@ -133,8 +133,10 @@ public class GameServerConfigService implements IService{
 		gameDynamicPropertiesConfig.init();
 		this.gameDynamicPropertiesConfig=gameDynamicPropertiesConfig;
 	}
-    private void initRpcConfig() {
-    	
+    private void initRpcConfig() throws Exception{
+    	RpcServerRegisterConfig rpcServerRegisterConfig=new RpcServerRegisterConfig();
+    	rpcServerRegisterConfig.init();
+    	this.rpcServerRegisterConfig=rpcServerRegisterConfig;
     }
     private void initZooKeeperConfig() {
     	
