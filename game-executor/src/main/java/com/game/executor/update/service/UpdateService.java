@@ -51,6 +51,7 @@ public class UpdateService<ID extends Serializable> {
 		this.iUpdateExecutor=iUpdateExecutor;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void addReadyCreateEvent(CycleEvent event) {
 		EventParam[] eventParams=event.getParams();
 		IUpdate iUpdate=(IUpdate)eventParams[0].getT();

@@ -12,13 +12,17 @@ import org.springframework.stereotype.Service;
 
 import com.game.common.constant.Loggers;
 import com.game.service.rpc.client.RpcClientConnectService;
+import com.game.service.rpc.client.ZookeeperRpcServiceDiscovery;
 
 @Service
 public class LocalSpringServicerAfterManager extends AbstractSpringStart{
 
-	private Logger logger=Loggers.serverLogger;
+	
     @Autowired
     private RpcClientConnectService rpcClientConnectService;
+    
+    @Autowired
+    private ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery;
     
 	public RpcClientConnectService getRpcClientConnectService() {
 		return rpcClientConnectService;
@@ -26,6 +30,13 @@ public class LocalSpringServicerAfterManager extends AbstractSpringStart{
 	public void setRpcClientConnectService(RpcClientConnectService rpcClientConnectService) {
 		this.rpcClientConnectService = rpcClientConnectService;
 	}
+	public ZookeeperRpcServiceDiscovery getZookeeperRpcServiceDiscovery() {
+		return zookeeperRpcServiceDiscovery;
+	}
+	public void setZookeeperRpcServiceDiscovery(ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery) {
+		this.zookeeperRpcServiceDiscovery = zookeeperRpcServiceDiscovery;
+	}
     
+	
     
 }

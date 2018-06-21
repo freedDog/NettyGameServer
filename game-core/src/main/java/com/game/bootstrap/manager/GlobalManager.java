@@ -39,6 +39,11 @@ import com.snowcattle.game.thread.policy.RejectedPolicyType;
  * 2018年5月31日 下午7:39:44
  */
 public class GlobalManager {
+	/**
+	 * 服务器启动时调用，初始化所有的管理器实实例
+	 * @param configFile
+	 * @throws Exception
+	 */
 	public void init(String configFile) throws Exception{
 		initLocalManager();
 		//初始化本地服务

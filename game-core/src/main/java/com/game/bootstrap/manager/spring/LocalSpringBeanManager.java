@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.game.logic.net.NetMessageProcessLogic;
 import com.game.logic.net.NetMessageTcpDispatchLogic;
 import com.game.service.message.command.MessageCommandFactory;
+import com.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
 import com.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.game.service.message.decoder.NetProtoBufUdpMessageDecoderFactory;
 import com.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
@@ -20,47 +21,143 @@ import com.game.service.message.factory.TcpMessageFactory;
 import com.game.service.net.tcp.pipeline.DefaultTcpServerPipeLine;
 import com.game.service.net.tcp.pipeline.DefaultUdpServerPipeLine;
 import com.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
+import com.game.service.net.tcp.session.builder.NettyUdpSessionBuilder;
+import com.game.service.rpc.client.RpcRequestFactory;
 import com.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import com.game.service.uuid.LongIdGenerator;
 
 @Repository
 public class LocalSpringBeanManager {
+	
 	@Autowired
 	private NettyTcpSessionBuilder nettyTcpSessionBuilder;
+	
 	@Autowired
-	private MessageCommandFactory messageCommandFactory;
-	@Autowired
-	private NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory;
-	@Autowired
-	private NetProtoBufUdpMessageDecoderFactory netProtoBufUdpMessageDecoderFactory;
-	@Autowired
-	private ProtostuffSerializeI protostuffSerialize;
-    @Autowired
-    private NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory;
-    @Autowired
-    private NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory;
-    @Autowired
-    private TcpMessageFactory tcpMessageFactory;
+	private NettyUdpSessionBuilder nettyUdpSessionBuilder;
+	
     @Autowired
     private LongIdGenerator longIdGenerator;
-    @Autowired
-    private NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory;
-    @Autowired
-    private NetMessageProcessLogic netMessageProcessLogic;
+    
     @Autowired
     private NetMessageTcpDispatchLogic netMessageTcpDispatchLogic;
+    
     @Autowired
-    private DefaultUdpServerPipeLine defaultUdpServerPipeLine;
+    private NetMessageProcessLogic netMessageProcessLogic;
+    
     @Autowired
     private DefaultTcpServerPipeLine defaultTcpServerPipeLine;
     
+    @Autowired
+    private DefaultUdpServerPipeLine defaultUdpServerPipeLine;
     
+    @Autowired
+    private TcpMessageFactory tcpMessageFactory;
+    
+	@Autowired
+	private ProtostuffSerializeI protostuffSerialize;
+	
+	@Autowired
+	private RpcRequestFactory requestFactory;
+    
+	@Autowired
+	private MessageCommandFactory messageCommandFactory;
+	
+	@Autowired
+	private NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory;
+	
+	@Autowired
+	private NetProtoBufUdpMessageDecoderFactory netProtoBufUdpMessageDecoderFactory;
+
+    @Autowired
+    private NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory;
+    
+    @Autowired
+    private NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory;
+    
+    @Autowired
+    private NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory;
+
+    @Autowired
+    private NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory;
+
 	public NettyTcpSessionBuilder getNettyTcpSessionBuilder() {
 		return nettyTcpSessionBuilder;
 	}
 
 	public void setNettyTcpSessionBuilder(NettyTcpSessionBuilder nettyTcpSessionBuilder) {
 		this.nettyTcpSessionBuilder = nettyTcpSessionBuilder;
+	}
+
+	public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
+		return nettyUdpSessionBuilder;
+	}
+
+	public void setNettyUdpSessionBuilder(NettyUdpSessionBuilder nettyUdpSessionBuilder) {
+		this.nettyUdpSessionBuilder = nettyUdpSessionBuilder;
+	}
+
+	public LongIdGenerator getLongIdGenerator() {
+		return longIdGenerator;
+	}
+
+	public void setLongIdGenerator(LongIdGenerator longIdGenerator) {
+		this.longIdGenerator = longIdGenerator;
+	}
+
+	public NetMessageTcpDispatchLogic getNetMessageTcpDispatchLogic() {
+		return netMessageTcpDispatchLogic;
+	}
+
+	public void setNetMessageTcpDispatchLogic(NetMessageTcpDispatchLogic netMessageTcpDispatchLogic) {
+		this.netMessageTcpDispatchLogic = netMessageTcpDispatchLogic;
+	}
+
+	public NetMessageProcessLogic getNetMessageProcessLogic() {
+		return netMessageProcessLogic;
+	}
+
+	public void setNetMessageProcessLogic(NetMessageProcessLogic netMessageProcessLogic) {
+		this.netMessageProcessLogic = netMessageProcessLogic;
+	}
+
+	public DefaultTcpServerPipeLine getDefaultTcpServerPipeLine() {
+		return defaultTcpServerPipeLine;
+	}
+
+	public void setDefaultTcpServerPipeLine(DefaultTcpServerPipeLine defaultTcpServerPipeLine) {
+		this.defaultTcpServerPipeLine = defaultTcpServerPipeLine;
+	}
+
+	public DefaultUdpServerPipeLine getDefaultUdpServerPipeLine() {
+		return defaultUdpServerPipeLine;
+	}
+
+	public void setDefaultUdpServerPipeLine(DefaultUdpServerPipeLine defaultUdpServerPipeLine) {
+		this.defaultUdpServerPipeLine = defaultUdpServerPipeLine;
+	}
+
+	public TcpMessageFactory getTcpMessageFactory() {
+		return tcpMessageFactory;
+	}
+
+	public void setTcpMessageFactory(TcpMessageFactory tcpMessageFactory) {
+		this.tcpMessageFactory = tcpMessageFactory;
+	}
+
+	public ProtostuffSerializeI getProtostuffSerialize() {
+		return protostuffSerialize;
+	}
+
+	public void setProtostuffSerialize(ProtostuffSerializeI protostuffSerialize) {
+		this.protostuffSerialize = protostuffSerialize;
+	}
+
+	public RpcRequestFactory getRequestFactory() {
+		return requestFactory;
+	}
+
+	public void setRequestFactory(RpcRequestFactory requestFactory) {
+		this.requestFactory = requestFactory;
 	}
 
 	public MessageCommandFactory getMessageCommandFactory() {
@@ -89,14 +186,6 @@ public class LocalSpringBeanManager {
 		this.netProtoBufUdpMessageDecoderFactory = netProtoBufUdpMessageDecoderFactory;
 	}
 
-	public ProtostuffSerializeI getProtostuffSerialize() {
-		return protostuffSerialize;
-	}
-
-	public void setProtostuffSerialize(ProtostuffSerializeI protostuffSerialize) {
-		this.protostuffSerialize = protostuffSerialize;
-	}
-
 	public NetProtoBufTcpMessageEncoderFactory getNetProtoBufTcpMessageEncoderFactory() {
 		return netProtoBufTcpMessageEncoderFactory;
 	}
@@ -115,20 +204,13 @@ public class LocalSpringBeanManager {
 		this.netProtoBufUdpMessageEncoderFactory = netProtoBufUdpMessageEncoderFactory;
 	}
 
-	public TcpMessageFactory getTcpMessageFactory() {
-		return tcpMessageFactory;
+	public NetProtoBufHttpMessageDecoderFactory getNetProtoBufHttpMessageDecoderFactory() {
+		return netProtoBufHttpMessageDecoderFactory;
 	}
 
-	public void setTcpMessageFactory(TcpMessageFactory tcpMessageFactory) {
-		this.tcpMessageFactory = tcpMessageFactory;
-	}
-
-	public LongIdGenerator getLongIdGenerator() {
-		return longIdGenerator;
-	}
-
-	public void setLongIdGenerator(LongIdGenerator longIdGenerator) {
-		this.longIdGenerator = longIdGenerator;
+	public void setNetProtoBufHttpMessageDecoderFactory(
+			NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory) {
+		this.netProtoBufHttpMessageDecoderFactory = netProtoBufHttpMessageDecoderFactory;
 	}
 
 	public NetProtoBufHttpMessageEncoderFactory getNetProtoBufHttpMessageEncoderFactory() {
@@ -139,39 +221,6 @@ public class LocalSpringBeanManager {
 			NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory) {
 		this.netProtoBufHttpMessageEncoderFactory = netProtoBufHttpMessageEncoderFactory;
 	}
-
-	public NetMessageProcessLogic getNetMessageProcessLogic() {
-		return netMessageProcessLogic;
-	}
-
-	public void setNetMessageProcessLogic(NetMessageProcessLogic netMessageProcessLogic) {
-		this.netMessageProcessLogic = netMessageProcessLogic;
-	}
-
-	public DefaultUdpServerPipeLine getDefaultUdpServerPipeLine() {
-		return defaultUdpServerPipeLine;
-	}
-
-	public void setDefaultUdpServerPipeLine(DefaultUdpServerPipeLine defaultUdpServerPipeLine) {
-		this.defaultUdpServerPipeLine = defaultUdpServerPipeLine;
-	}
-
-	public DefaultTcpServerPipeLine getDefaultTcpServerPipeLine() {
-		return defaultTcpServerPipeLine;
-	}
-
-	public void setDefaultTcpServerPipeLine(DefaultTcpServerPipeLine defaultTcpServerPipeLine) {
-		this.defaultTcpServerPipeLine = defaultTcpServerPipeLine;
-	}
-
-	public NetMessageTcpDispatchLogic getNetMessageTcpDispatchLogic() {
-		return netMessageTcpDispatchLogic;
-	}
-
-	public void setNetMessageTcpDispatchLogic(NetMessageTcpDispatchLogic netMessageTcpDispatchLogic) {
-		this.netMessageTcpDispatchLogic = netMessageTcpDispatchLogic;
-	}
-	
 	
 	
 }

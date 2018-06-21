@@ -1,3 +1,4 @@
+syntax="proto2";
 option java_package = "com.game.message.auto.tcp.online.client";
 option java_outer_classname = "OnlineTCPClientProBuf";
 

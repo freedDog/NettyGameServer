@@ -5,11 +5,16 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.slf4j.Logger;
 
+import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.IUpdatable;
 import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.Loggers;
+import com.game.common.exception.GameHandlerException;
+import com.game.common.util.ErrorsUtil;
+import com.game.logic.net.NetMessageProcessLogic;
 import com.game.service.message.AbstractNetMessage;
 import com.game.service.message.AbstractNetProtoBufMessage;
+import com.game.service.message.factory.ITcpMessageFactory;
 import com.game.service.net.tcp.session.NettySession;
 
 /**
@@ -45,6 +50,39 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess,IUp
 			if(logger.isInfoEnabled()) {
 				begin=System.nanoTime();
 			}
+			statisticsMessageCount++;
+			try {
+				NetMessageProcessLogic netMessageProcessLogic=LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+				netMessageProcessLogic.processMessage(message, nettySession);
+			}catch (Exception e) {
+				if(logger.isErrorEnabled()) {
+					logger.error(ErrorsUtil.error("Error",
+							"#QueueMessageExecutorProcessor.process","param"),e);
+				}
+				if(e instanceof GameHandlerException) {
+					GameHandlerException gameHandlerException=(GameHandlerException)e;
+					ITcpMessageFactory iTcpMessageFactory=LocalMananger.getInstance().get(ITcpMessageFactory.class);
+					AbstractNetMessage errorMessage=iTcpMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), gameHandlerException.COMMON_ERROR_STATE);
+					try {
+						nettySession.write(errorMessage);
+					}catch (Exception writeException) {
+						 Loggers.errorLogger.error(ErrorsUtil.error("Error",
+	                                "#.QueueMessageExecutorProcessor.writeErrorMessage", "param"), e);
+					}
+				}
+			}finally {
+                if (logger.isInfoEnabled()) {
+                    // 特例，统计时间跨度
+                    long time = (System.nanoTime() - begin) / (1000 * 1000);
+                    if (time > 1) {
+                        statLog.info("#CORE.MSG.PROCESS.STATICS Message id:"
+                                + message.getNetMessageHead().getCmd() + " Time:"
+                                + time + "ms" + " Total:"
+                                + statisticsMessageCount);
+                    }
+                }
+
+            }
 		}
 	}
 	
@@ -60,13 +98,12 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess,IUp
 	
 
 	public void addnetMessage(AbstractNetMessage abstractNetMessage) {
-		// TODO Auto-generated method stub
-		
+		this.netMessagesQueue.add((AbstractNetProtoBufMessage)abstractNetMessage);
 	}
 
 	public void close() {
-		// TODO Auto-generated method stub
-		
+		this.netMessagesQueue.clear();
+		setSuspendedProcess(true);
 	}
 
 	public boolean isSuspendedProcess() {

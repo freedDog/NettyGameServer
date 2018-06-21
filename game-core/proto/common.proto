@@ -1,3 +1,4 @@
+syntax="proto2";
 option java_package = "com.game.message.auto.common";
 option java_outer_classname = "CommonMessageProBuf";
 

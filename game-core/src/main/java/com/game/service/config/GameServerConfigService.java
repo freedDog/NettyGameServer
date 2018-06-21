@@ -14,7 +14,10 @@ import com.game.common.config.ZooKeeperConfig;
 import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.ServiceName;
 import com.game.service.IService;
+import com.game.service.net.http.NetHttpServerConfig;
+import com.game.service.net.proxy.NetProxyConfig;
 import com.game.service.net.udp.NetUdpServerConfig;
+import com.game.service.net.websocket.NetWebSocketServerConfig;
 import com.game.service.rpc.server.RpcServerRegisterConfig;
 
 /**
@@ -26,12 +29,15 @@ import com.game.service.rpc.server.RpcServerRegisterConfig;
 @Service
 public class GameServerConfigService implements IService{
 
-	protected GameServerConfig gameServerConfig;
 	protected GameServerDiffConfig gameServerDiffConfig;
+	protected GameServerConfig gameServerConfig;
 	protected GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
 	protected ZooKeeperConfig zooKeeperConfig;
 	protected RpcServerRegisterConfig rpcServerRegisterConfig;
+	protected NetProxyConfig netProxyConfig;
 	protected NetUdpServerConfig netUdpServerConfig;
+	protected NetHttpServerConfig netHttpServerConfig;
+	protected NetWebSocketServerConfig netWebSocketServerConfig;
 	
 	@Override
 	public String getId() {
@@ -44,8 +50,8 @@ public class GameServerConfigService implements IService{
 	}
 	
 	public void init() throws Exception{
-		this.initConfig();
-		this.initDiffConfig();
+		initConfig();
+		initDiffConfig();
         initDynamicConfig();
         initRpcConfig();
         initZooKeeperConfig();
@@ -109,6 +115,25 @@ public class GameServerConfigService implements IService{
 		this.netUdpServerConfig = netUdpServerConfig;
 	}
 	
+	
+	public NetHttpServerConfig getNetHttpServerConfig() {
+		return netHttpServerConfig;
+	}
+
+	public void setNetHttpServerConfig(NetHttpServerConfig netHttpServerConfig) {
+		this.netHttpServerConfig = netHttpServerConfig;
+	}
+
+	
+	
+	public NetWebSocketServerConfig getNetWebSocketServerConfig() {
+		return netWebSocketServerConfig;
+	}
+
+	public void setNetWebSocketServerConfig(NetWebSocketServerConfig netWebSocketServerConfig) {
+		this.netWebSocketServerConfig = netWebSocketServerConfig;
+	}
+
 	private void initConfig() {
 		String cfgPath=GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
 		ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
@@ -139,9 +164,17 @@ public class GameServerConfigService implements IService{
     	this.rpcServerRegisterConfig=rpcServerRegisterConfig;
     }
     private void initZooKeeperConfig() {
-    	
+    	DefaultResourceLoader defaultResourceLoader=new DefaultResourceLoader();
+    	Resource resource=defaultResourceLoader.getResource(GlobalConstants.ConfigFile.ZOOKEEPER_CONFIG);
+    	ZooKeeperConfig zooKeeperConfig=new ZooKeeperConfig();
+    	zooKeeperConfig.setResource(resource);
+    	zooKeeperConfig.init();
+    	this.zooKeeperConfig=zooKeeperConfig;
     }
-    private void initNetProxyConfig() {
+    private void initNetProxyConfig() throws Exception{
+    	NetProxyConfig netProxyConfig=new NetProxyConfig();
+    	netProxyConfig.init();
+    	this.netProxyConfig=netProxyConfig;
     	
     }
     private void initNetUdpServerConfig() throws Exception {
@@ -149,11 +182,15 @@ public class GameServerConfigService implements IService{
     	netUdpServerConfig.init();
     	this.netUdpServerConfig=netUdpServerConfig;
     }
-    private void initNetHttpServerConfig() {
-    	
+    private void initNetHttpServerConfig() throws Exception{
+    	NetHttpServerConfig netHttpServerConfig=new NetHttpServerConfig();
+    	netHttpServerConfig.init();
+    	this.netHttpServerConfig=netHttpServerConfig;
     }
-    private void initWebSocketConfig() {
-    	
+    private void initWebSocketConfig() throws Exception{
+    	NetWebSocketServerConfig netWebSocketServerConfig=new NetWebSocketServerConfig();
+    	netWebSocketServerConfig.init();
+    	this.netWebSocketServerConfig=netWebSocketServerConfig;
     }
-
+    
 }

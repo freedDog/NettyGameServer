@@ -3,6 +3,7 @@ package com.game.message.handler.impl.online;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.game.bootstrap.manager.LocalMananger;
+import com.game.common.annotation.MessageCommandAnnotation;
 import com.game.common.constant.Loggers;
 import com.game.logic.player.GamePlayer;
 import com.game.message.handler.AbstractMessageHandler;
@@ -10,6 +11,7 @@ import com.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
 import com.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
 import com.game.service.lookup.GamePlayerLoopUpService;
 import com.game.service.message.AbstractNetMessage;
+import com.game.service.message.command.MessageCommandIndex;
 import com.game.service.net.tcp.MessageAttributeEnum;
 import com.game.service.net.tcp.session.NettyTcpSession;
 
@@ -22,7 +24,7 @@ import com.game.service.net.tcp.session.NettyTcpSession;
 public class OnlineTcpHandlerImpl extends AbstractMessageHandler{
 
 	private AtomicLong id=new AtomicLong();
-	
+	 @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
 	public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {
 		OnlineLoginServerTcpMessage onlineLoginServerTcpMessage = new OnlineLoginServerTcpMessage();
         long playerId = 6666 + id.incrementAndGet();
