@@ -17,8 +17,8 @@ import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.Loggers;
 import com.game.logic.net.NetMessageTcpDispatchLogic;
 import com.game.service.message.AbstractNetMessage;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.ThreadNameFactory;
 
 /**
  * 默认不开启worker线程

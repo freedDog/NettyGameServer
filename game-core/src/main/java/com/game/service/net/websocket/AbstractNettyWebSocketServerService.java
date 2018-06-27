@@ -3,7 +3,8 @@ package com.game.service.net.websocket;
 import org.slf4j.Logger;
 import com.game.common.constant.Loggers;
 import com.game.service.net.AbstractNettyServerService;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.thread.ThreadNameFactory;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;

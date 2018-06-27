@@ -6,6 +6,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.stereotype.Service;
+
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.config.GameServerConfig;
 import com.game.common.constant.GlobalConstants;
@@ -13,8 +15,8 @@ import com.game.common.constant.ServiceName;
 import com.game.service.IService;
 import com.game.service.async.AsyncCall;
 import com.game.service.config.GameServerConfigService;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.ThreadNameFactory;
 
 /**
  * 增加异步线程池
@@ -22,6 +24,7 @@ import com.snowcattle.game.thread.ThreadNameFactory;
  *
  * 2018年6月6日 下午12:37:37
  */
+@Service
 public class AsyncThreadService implements AsyncThreadPool,IService{
 	
 	protected ExecutorService executorService;

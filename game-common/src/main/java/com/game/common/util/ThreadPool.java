@@ -5,11 +5,10 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.snowcattle.game.common.utils.ExecutorUtil;
+import com.game.threadpool.common.utils.ExecutorUtil;
 
 /**
  * 创建线程池

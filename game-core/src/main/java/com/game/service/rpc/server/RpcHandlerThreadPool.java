@@ -10,19 +10,17 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
-
 import com.game.common.constant.GlobalConstants;
-import com.snowcattle.game.common.constants.Loggers;
-import com.snowcattle.game.common.enums.BlockingQueueType;
-import com.snowcattle.game.thread.ThreadNameFactory;
-import com.snowcattle.game.thread.policy.AbortPolicy;
-import com.snowcattle.game.thread.policy.BlockingPolicy;
-import com.snowcattle.game.thread.policy.CallerRunsPolicy;
-import com.snowcattle.game.thread.policy.DiscardPolicy;
-import com.snowcattle.game.thread.policy.RejectedPolicyType;
+import com.game.threadpool.common.constants.Loggers;
+import com.game.threadpool.common.enums.BlockingQueueType;
+import com.game.threadpool.thread.ThreadNameFactory;
+import com.game.threadpool.thread.policy.AbortPolicy;
+import com.game.threadpool.thread.policy.BlockingPolicy;
+import com.game.threadpool.thread.policy.CallerRunsPolicy;
+import com.game.threadpool.thread.policy.DiscardPolicy;
+import com.game.threadpool.thread.policy.RejectedPolicyType;
 
 /**
  * 
@@ -44,7 +42,8 @@ public class RpcHandlerThreadPool {
 	}
 	
 	private RejectedExecutionHandler createPolicy() {
-		RejectedPolicyType rejectedPolicyType=RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr,"CaallerRunsPolicy"));
+		String type=System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr,"CallerRunsPolicy");
+		RejectedPolicyType rejectedPolicyType=RejectedPolicyType.fromString(type);
 		
 		switch (rejectedPolicyType) {
 		case BLOCKING_POLICY:

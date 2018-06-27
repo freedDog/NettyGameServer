@@ -1,9 +1,11 @@
 package com.game.service.check;
 
+import org.springframework.stereotype.Service;
+
 import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.ServiceName;
 import com.game.service.IService;
-import com.snowcattle.timer.WheelTimer;
+import com.game.wheel.timer.WheelTimer;
 
 /**
  * 用于生命周期检查，使用wheeltimer
@@ -11,6 +13,7 @@ import com.snowcattle.timer.WheelTimer;
  *
  * 2018年6月6日 下午12:47:50
  */
+@Service
 public class LifeCycleCheckService implements IService{
 
 	private WheelTimer<Integer> wheelTimer;

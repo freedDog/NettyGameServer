@@ -10,7 +10,13 @@ import com.game.service.IServerService;
  * 2018年5月31日 下午7:05:13
  */
 public abstract class AbstractServerService implements IServerService{
+	/**
+	 * 服务id
+	 */
 	private final String serviceId;
+	/**
+	 * 服务状态
+	 */
 	protected byte serviceState;
 	
 	public AbstractServerService(String serviceId) {

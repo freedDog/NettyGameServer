@@ -19,12 +19,12 @@ import com.game.db.service.proxy.EntityProxyFactory;
 import com.game.db.service.redis.AsyncRedisKeyEnum;
 import com.game.db.service.redis.RedisService;
 import com.game.db.sharding.EntityServiceShardingStrategy;
+import com.game.threadpool.thread.executor.NonOrderedQueuePoolExecutor;
 import com.redis.transaction.enums.GameTransactionCause;
 import com.redis.transaction.enums.GameTransactionCommitResult;
 import com.redis.transaction.enums.GameTransactionEntityCause;
 import com.redis.transaction.service.RGTRedisService;
 import com.redis.transaction.service.TransactionService;
-import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
 
 /**
  * 异步执行更新中心

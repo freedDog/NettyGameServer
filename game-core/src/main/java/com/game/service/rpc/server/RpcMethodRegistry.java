@@ -12,7 +12,7 @@ import com.game.common.constant.Loggers;
 import com.game.common.constant.ServiceName;
 import com.game.common.scanner.ClassScanner;
 import com.game.service.IService;
-import com.game.service.Reloadable;
+import com.game.service.IReloadable;
 import com.game.service.config.GameServerConfigService;
 import com.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 
@@ -23,7 +23,7 @@ import com.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
  * 2018年6月12日 下午7:32:04
  */
 @Service
-public class RpcMethodRegistry implements Reloadable,IService{
+public class RpcMethodRegistry implements IReloadable,IService{
 	
 	public static Logger logger=Loggers.serverLogger;
 	

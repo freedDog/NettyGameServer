@@ -20,8 +20,8 @@ import com.game.service.message.AbstractNetMessage;
 import com.game.service.message.AbstractNetProtoBufMessage;
 import com.game.service.net.tcp.MessageAttributeEnum;
 import com.game.service.net.udp.session.NettyUdpSession;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.ThreadNameFactory;
 
 /**
  * 

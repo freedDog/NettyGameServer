@@ -2,13 +2,12 @@ package com.game.service.rpc.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.config.GameServerConfig;
 import com.game.common.constant.ServiceName;
 import com.game.service.IService;
 import com.game.service.config.GameServerConfigService;
-import com.snowcattle.game.common.utils.ExecutorUtil;
+import com.game.threadpool.common.utils.ExecutorUtil;
 
 /**
  * 

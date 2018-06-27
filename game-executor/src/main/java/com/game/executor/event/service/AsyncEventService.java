@@ -5,21 +5,19 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
-
 import com.game.common.util.ErrorsUtil;
 import com.game.executor.common.utils.CommonErrorInfo;
 import com.game.executor.common.utils.Loggers;
 import com.game.executor.event.EventBus;
 import com.game.executor.event.SingleEvent;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.expression.Expression;
-import com.snowcattle.game.expression.ExpressionUtil;
-import com.snowcattle.game.thread.ThreadNameFactory;
-import com.snowcattle.game.thread.executor.OrderedQueuePoolExecutor;
-import com.snowcattle.game.thread.factory.GameThreadPoolHelpFactory;
-import com.snowcattle.game.thread.policy.RejectedPolicyType;
+import com.game.expression.Expression;
+import com.game.expression.ExpressionUtil;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.ThreadNameFactory;
+import com.game.threadpool.thread.executor.OrderedQueuePoolExecutor;
+import com.game.threadpool.thread.factory.GameThreadPoolHelpFactory;
+import com.game.threadpool.thread.policy.RejectedPolicyType;
 
 /**
  * 异步事件服务

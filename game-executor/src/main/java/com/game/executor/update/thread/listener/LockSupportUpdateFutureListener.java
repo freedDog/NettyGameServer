@@ -9,8 +9,8 @@ import com.game.executor.event.impl.event.UpdateEvent;
 import com.game.executor.update.cache.UpdateEventCacheService;
 import com.game.executor.update.entity.IUpdate;
 import com.game.executor.update.thread.update.LockSupportUpdateFuture;
-import com.snowcattle.future.ITaskFuture;
-import com.snowcattle.future.ITaskFutureListener;
+import com.game.future.listener.ITaskFuture;
+import com.game.future.listener.ITaskFutureListener;
 
 /**
  * 

@@ -21,21 +21,37 @@ public class ServerServiceManager {
 	public static final String SERVICE_ID_ROOT="SERVICE_ROOT";
 	private final Map<String,IServerService> serviceMap=new HashMap<String, IServerService>();
 	
+	private ServerServiceManager() {}
+	
 	public static final ServerServiceManager getInstance() {
 		if(null==instance) {
 			instance=new ServerServiceManager();
 		}
 		return instance;
 	}
-	
+	/**
+	 * 注册服务
+	 * @param serviceId
+	 * @param service
+	 */
 	public final void registerService(String serviceId,IServerService service) {
 		this.serviceMap.put(serviceId, service);
 	}
 	
+	/**
+	 * 获取指定的服务
+	 * @param serviceId
+	 * @return
+	 */
 	public final IServerService getService(String serviceId) {
 		return this.serviceMap.get(serviceId);
 	}
 	
+	/**
+	 * 移除指定的服务
+	 * @param serviceId
+	 * @return
+	 */
 	public final IServerService removeService(String serviceId) {
 		return this.serviceMap.remove(serviceId);
 	}

@@ -3,7 +3,7 @@ package com.game.executor.event.service;
 import com.game.executor.common.utils.Loggers;
 import com.game.executor.event.EventBus;
 import com.game.executor.event.SingleEvent;
-import com.snowcattle.game.thread.worker.AbstractWork;
+import com.game.threadpool.thread.worker.AbstractWork;
 
 /**
  * 单事件worker

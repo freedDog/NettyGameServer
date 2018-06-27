@@ -82,6 +82,7 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
 	
 	private Object handle(RpcRequest request) throws Throwable{
 		String className=request.getClassName();
+		className="com.game.service.rpc.service.client.HelloService";
 		RpcMethodRegistry rpcMethodRegistry=LocalMananger.getInstance().getLocalSpringServiceManager().getRpcMethodRegistry();
 		Object serviceBean=rpcMethodRegistry.getServiceBean(className);
 		Class<?> serviceClass=serviceBean.getClass();

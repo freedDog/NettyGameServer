@@ -9,10 +9,10 @@ import com.game.executor.update.thread.dispatch.DispatchThread;
 import com.game.executor.update.thread.listener.LockSupportUpdateFutureListener;
 import com.game.executor.update.thread.update.LockSupportUpdateFuture;
 import com.game.executor.update.thread.update.LockSupportUpdateFutureThread;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
-import com.snowcattle.game.thread.factory.GameThreadPoolHelpFactory;
-import com.snowcattle.game.thread.policy.RejectedPolicyType;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.executor.NonOrderedQueuePoolExecutor;
+import com.game.threadpool.thread.factory.GameThreadPoolHelpFactory;
+import com.game.threadpool.thread.policy.RejectedPolicyType;
 
 /**
  * 更新执行器

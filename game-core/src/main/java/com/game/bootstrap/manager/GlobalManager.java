@@ -30,7 +30,7 @@ import com.game.service.net.tcp.process.QueueMessageExecutorProcessor;
 import com.game.service.net.tcp.process.QueueTcpMessageExecutorProcessor;
 import com.game.service.net.udp.NetUdpServerConfig;
 import com.game.service.net.udp.SdUdpServerConfig;
-import com.snowcattle.game.thread.policy.RejectedPolicyType;
+import com.game.threadpool.thread.policy.RejectedPolicyType;
 
 /**
  * 各种全局的业务管理器，公共服实例的持有者，负责各种管理器的初始化和实例的获取

@@ -26,9 +26,6 @@
 		<slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
 		<netty.version>4.1.6.Final</netty.version>
 		<spring.version>4.3.2.RELEASE</spring.version>
-		<GameThreadPool.version>1.1.5</GameThreadPool.version>
-		<future-listener.version>1.1</future-listener.version>
-		<wheel-timer.version>v1.0</wheel-timer.version>
 		<disruptor.version>3.3.6</disruptor.version>
 		<project.build.directory>target/classes/com</project.build.directory>
 	</properties>
@@ -96,21 +93,6 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.github.jwpttcg66</groupId>
-			<artifactId>GameThreadPool</artifactId>
-			<version>${GameThreadPool.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jwpttcg66</groupId>
-			<artifactId>wheel-timer</artifactId>
-			<version>${wheel-timer.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jwpttcg66</groupId>
-			<artifactId>future-listener</artifactId>
-			<version>${future-listener.version}</version>
-		</dependency>
 		<!-- Protostuff -->
 		<dependency>
 			<groupId>com.dyuproject.protostuff</groupId>
@@ -152,6 +134,11 @@
 			<artifactId>curator-recipes</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		<dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
 
 	</dependencies>
 	<build>

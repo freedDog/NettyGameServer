@@ -25,6 +25,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.config.GameDynamicPropertiesConfig;
@@ -44,6 +45,7 @@ import com.game.service.rpc.server.zookeeper.ZooKeeperNodeInfo;
  *
  * 2018年6月13日 下午2:18:52
  */
+@Service
 public class ZookeeperRpcServiceDiscovery implements IService{
 	
 	private static final Logger logger=Loggers.rpcLogger;

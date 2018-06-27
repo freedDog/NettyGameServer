@@ -16,7 +16,7 @@ import com.game.common.constant.ServiceName;
 import com.game.common.scanner.ClassScanner;
 import com.game.common.util.StringUtils;
 import com.game.service.IService;
-import com.game.service.Reloadable;
+import com.game.service.IReloadable;
 import com.game.service.config.GameServerConfigService;
 import com.game.service.message.AbstractNetProtoBufMessage;
 import com.game.service.message.command.MessageCommand;
@@ -29,7 +29,7 @@ import com.game.service.message.command.MessageCommandFactory;
  * 2018年6月4日 下午1:18:41
  */
 @Service
-public class MessageRegistry implements Reloadable,IService{
+public class MessageRegistry implements IReloadable,IService{
 
 	public static Logger logger=Loggers.serverLogger;
 	

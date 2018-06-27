@@ -17,7 +17,7 @@ import com.game.common.scanner.ClassScanner;
 import com.game.message.handler.AbstractMessageHandler;
 import com.game.message.handler.IMessageHandler;
 import com.game.service.IService;
-import com.game.service.Reloadable;
+import com.game.service.IReloadable;
 import com.game.service.classes.loader.DefaultClassLoader;
 import com.game.service.classes.loader.DynamicGameClassLoader;
 import com.game.service.config.GameServerConfigService;
@@ -30,7 +30,7 @@ import com.game.service.message.AbstractNetMessage;
  * 2018年6月1日 下午12:24:05
  */
 @Service
-public class GameFacade implements IFacade,Reloadable,IService{
+public class GameFacade implements IFacade,IReloadable,IService{
 	
 	public static final Logger logger=Loggers.serverLogger;
 	

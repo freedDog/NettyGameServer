@@ -6,14 +6,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.stereotype.Service;
-
 import com.game.common.constant.GlobalConstants;
 import com.game.common.constant.ServiceName;
 import com.game.service.IService;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.ThreadNameFactory;
 
 /**
  * rpc 客服端RPCFuture 管理服务

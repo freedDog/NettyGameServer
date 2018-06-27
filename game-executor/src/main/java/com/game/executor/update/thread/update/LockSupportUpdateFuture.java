@@ -2,8 +2,8 @@ package com.game.executor.update.thread.update;
 
 import com.game.executor.update.entity.IUpdate;
 import com.game.executor.update.thread.dispatch.DispatchThread;
-import com.snowcattle.future.AbstractFuture;
-import com.snowcattle.future.ITaskFuture;
+import com.game.future.listener.AbstractFuture;
+import com.game.future.listener.ITaskFuture;
 
 /**
  * 

@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.game.executor.update.entity.IUpdate;
 import com.game.executor.update.pool.excutor.BindThreadUpdateExecutorService;
 import com.game.executor.update.thread.dispatch.DispatchThread;
-import com.snowcattle.game.common.utils.ExecutorUtil;
+import com.game.threadpool.common.utils.ExecutorUtil;
 
 /**
  * 绑定线程更新服务

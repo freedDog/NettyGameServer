@@ -14,8 +14,8 @@ import com.game.db.service.async.thread.AsyncDbOperationMonitor;
 import com.game.db.service.common.service.IDbService;
 import com.game.db.service.config.DbConfig;
 import com.game.db.service.entity.AsyncOperationRegistry;
-import com.snowcattle.game.common.utils.ExecutorUtil;
-import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
+import com.game.threadpool.common.utils.ExecutorUtil;
+import com.game.threadpool.thread.executor.NonOrderedQueuePoolExecutor;
 
 /**
  * 

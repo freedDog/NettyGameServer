@@ -1,5 +1,7 @@
 package com.game.service.net.ssl;
 
+import org.springframework.stereotype.Service;
+
 import com.game.bootstrap.manager.LocalMananger;
 import com.game.common.config.GameServerConfig;
 import com.game.common.constant.ServiceName;
@@ -16,6 +18,7 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  *
  * 2018年6月19日 下午8:49:54
  */
+@Service
 public class SSLService implements IService{
 	
 	private SslContext sslContext;

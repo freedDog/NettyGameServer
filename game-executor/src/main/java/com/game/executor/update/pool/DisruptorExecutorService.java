@@ -11,10 +11,10 @@ import com.game.executor.update.cache.UpdateEventCacheService;
 import com.game.executor.update.entity.IUpdate;
 import com.game.executor.update.thread.dispatch.DispatchThread;
 import com.game.executor.update.thread.dispatch.DisruptorDispatchThread;
+import com.game.threadpool.thread.executor.NonOrderedQueuePoolExecutor;
 import com.lmax.disruptor.FatalExceptionHandler;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.WorkerPool;
-import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
 
 /**
  * 

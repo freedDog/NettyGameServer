@@ -13,7 +13,7 @@ import com.game.executor.update.entity.IUpdate;
 import com.game.executor.update.entity.NullWeakUpUpdate;
 import com.game.executor.update.thread.dispatch.DispatchThread;
 import com.game.executor.update.thread.update.bind.BindingUpdateThread;
-import com.snowcattle.game.thread.ThreadNameFactory;
+import com.game.threadpool.thread.ThreadNameFactory;
 
 
 /**
